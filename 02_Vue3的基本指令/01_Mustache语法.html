@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>01_Mustache语法.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<!--			1.mustache的基本使用-->
+			<h2>{{ message }} - {{ message }}</h2>
+			<!--			2.是一个表达式-->
+			<h2>{{count*10}}</h2>
+			<h2>{{message.split(".").reverse().join(" ")}}</h2>
+			<!--			3.也可以调用函数-->
+			<!--			也可以调用computed()计算属性-->
+			<h2>{{getReverseMsg()}}</h2>
+			<!--			4.三元运算-->
+			<button @click="isFlag=!isFlag">按钮</button>
+			<h2>{{isFlag?"true":"false"}}</h2>
+			{{this.isFlag}}
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '01_Mustache语法.html',
+						count: 1,
+						isFlag: false,
+					}
+				},
+				methods: {
+					getReverseMsg() {
+						return this.message.split('.').reverse().join(' ')
+					},
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
