@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>04_属性和名称都是动态的.html</title>
+		<style>
+			.fontWight {
+				font-weight: 700;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<p :[name]="value">{{ message }}</p>
+			<button @click="change">按钮</button>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '04_属性和名称都是动态的.html',
+						name: 'style',
+						value: {
+							color: 'skyblue',
+						},
+					}
+				},
+				methods: {
+					change() {
+						this.name = 'class'
+						this.value = 'fontWight'
+					},
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
