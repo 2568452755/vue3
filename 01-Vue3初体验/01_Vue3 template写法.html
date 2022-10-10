@@ -17,6 +17,7 @@
 			<h2>{{count}}</h2>
 			<button @click="add">+</button>
 			<button @click="sub">-</button>
+			<button @click="fn">按钮</button>
 		</template>
 		<script src="https://unpkg.com/vue@next"></script>
 		<script>
@@ -39,6 +40,14 @@
 					},
 					sub() {
 						this.count--
+					},
+					//	vue3的官方文档中说明methods里面不能使用箭头函数
+					//	this === window? 不可以
+					//	写成一个箭头函数时,这里的this指向的是window对象
+					//	在箭头函数中是不绑定this,但是函数中如果使用了this,指向的的window对象
+					// this指向问题详解 https://mp.weixin.qq.com/s/vMSkb5OYvJOzfgTI2V5oyg
+					fn: () => {
+						console.log(this) //window
 					},
 				},
 			}
