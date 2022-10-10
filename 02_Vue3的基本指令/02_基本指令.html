@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>02_基本指令.html</title>
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<!--	v-once:只渲染一次-->
+			<span>{{count}}</span>
+			<span v-once>{{count}}</span>
+			<button @click="this.count++">+</button>
+
+			<!--			v-text:同mustache语法-->
+			<h2 v-text="message"></h2>
+			<h2>{{ message }}</h2>
+
+			<!--			v-html:字符串渲染成html元素-->
+			<h2 v-html='`<span style="color:skyblue">111</span>`'></h2>
+
+			<!--			v-pre:展示原生结果,下面渲染的结果就是{{message}}-->
+			<h2 v-pre>{{message}}</h2>
+
+			<!--			v-cloak:在数据还没渲染时标签自带v-clock属性,结合style可让{{message}}在值未被渲染时不显示-->
+			<h2 v-cloak>{{message}}</h2>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						count: 0,
+						message: '02_基本指令.html',
+					}
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
