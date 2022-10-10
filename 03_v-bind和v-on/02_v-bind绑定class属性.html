@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>02_v-bind绑定class属性.html</title>
+		<style>
+			.fontWeight {
+				font-weight: 700;
+			}
+			.fontColor {
+				color: skyblue;
+			}
+			.fontSize {
+				font-size: 24px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<!--			1.普通绑定-->
+			<p :class="className">{{message}}</p>
+
+			<!--			2.对象绑定-->
+			<!-- 动态切换class是否加入: {类(变量): boolean(true/false)} -->
+			<p :class="{'fontWeight':true,fontColor:false}">{{message}}</p>
+
+			<!--			动态控制-->
+			<p :class="{'fontWeight':isWeight,fontColor:false}">{{message}}</p>
+			<button @click="isWeight=!isWeight">按钮</button>
+
+			<!--			绑定对象-->
+			<p :class="classObj">{{message}}</p>
+
+			<!--			从methods中获取-->
+			<p :class="getClassObj()">{{message}}</p>
+
+			<!--			3.数组语法-->
+			<p :class="classList">{{message}}</p>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '02_v-bind绑定class属性.html',
+						className: 'fontSize',
+						isWeight: true,
+						classObj: {
+							fontWeight: false,
+							fontColor: true,
+							fontSize: true,
+						},
+						classList: ['fontWeight', 'fontColor', 'fontSize'],
+					}
+				},
+				methods: {
+					getClassObj() {
+						return this.classObj
+					},
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
