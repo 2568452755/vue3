@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>04_v-for中key的使用.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<h2>{{ message }}</h2>
+
+			<!--			没有key,将新旧Vnode进行遍历对比,相同的不变,从不同节点开始顺序表后移-->
+			<!--			如果不使用key,Vue会使用一种最大限度减少动态元素并尽可能的尝试就地修改/复用相同类型元素的算法-->
+			<template v-for="item in movies">{{item}}</template>
+
+			<!--			有key-->
+			<!--			1.新旧Vnode先从头开始比较相同的不变-->
+			<!--			2.直到头不相同,然后从尾开始比较-->
+			<!--			3.比较完成,新Vnode长度更长,添加.新Vnode长度更短,删除-->
+			<!--			4.中间还有就挨着比较,相同变更顺序,新的添加,旧的删除.-->
+			<!--			使用key,它会基于key的变化重新排列元素顺序,并且会移除/销毁key不存在的元素-->
+			<template v-for="(item,index) in movies" :key="index">{{item}}</template>
+
+			<button @click="insertF">按钮</button>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '04_v-for中key的使用.html',
+						movies: [1, 2, 3, 4],
+						obj: {
+							name: '张三',
+							age: 18,
+							book: 'chinese',
+						},
+					}
+				},
+				methods: {
+					insertF() {
+						this.movies.splice(1, 0, 'f')
+					},
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
