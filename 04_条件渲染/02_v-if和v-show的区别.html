@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>02_v-if和v-show的区别.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<h2>{{ message }}</h2>
+			<!--			v-if=false时,DOM树上不渲染-->
+			<template v-if="flag"> 1 </template>
+
+			<!--			v-show是使用display:none来切换是否显示,不支持template-->
+			<template v-show="flag"> 2 </template>
+			<button @click="flag=!flag">切换</button>
+
+			<!--			v-if和v-show如何选择?-->
+			<!--			频繁显示和隐藏使用v-show-->
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '02_v-if和v-show的区别.html',
+						flag: true,
+					}
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
