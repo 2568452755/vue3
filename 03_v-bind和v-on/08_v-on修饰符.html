@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>08_v-on修饰符.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<div @click="clsClick" style="width: 100px; height: 100px; background-color: skyblue">
+				<!--				.stop阻止事件冒泡-->
+				<button @click.stop="btnClick">按钮</button>
+			</div>
+			<!--          .enter 回车键按下时触发-->
+			<input type="text" @keyup.enter="onEnter" />
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '08_v-on修饰符.html',
+					}
+				},
+				methods: {
+					clsClick() {
+						console.log('clsClick')
+					},
+					btnClick() {
+						console.log('btnClick')
+					},
+					onEnter(e) {
+						console.log('enter', e.target.value)
+					},
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
