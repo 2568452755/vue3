@@ -13,6 +13,8 @@
 			<h2>{{ message }}</h2>
 			<template v-for="item in movies">{{item}}</template>
 			<p v-for="(value,key,index) in obj">{{value}}-{{key}}-{{index}}</p>
+			<!--			数组修改原数组的方法侦听也能实现响应式-->
+			<button @click="movies.reverse()">按钮</button>
 		</template>
 
 		<script src="../js/vue.js"></script>
