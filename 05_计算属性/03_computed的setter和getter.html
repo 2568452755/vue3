@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>03_computed的setter和getter.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<h2>{{ message }}</h2>
+			<h2>{{fullName}}</h2>
+			<button @click="change">改变fullName</button>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '03_computed的setter和getter.html',
+						firstName: 'jack',
+						lastName: 'Chen',
+					}
+				},
+				computed: {
+					fullName: {
+						set: function (newVal) {
+							console.log(newVal)
+							const name = newVal.split(' ')
+							this.firstName = name[0]
+							this.lastName = name[1]
+						},
+						get: function () {
+							return this.firstName + ' ' + this.lastName
+						},
+					},
+				},
+				methods: {
+					change() {
+						//methods方法可以直接调用computed定义的属性
+						//在执行赋值语句时,自动调用计算属性中的setter方法
+						this.fullName = 'Jay tom'
+					},
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
