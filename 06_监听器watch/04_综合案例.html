@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>04_综合案例.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+		<template id="myapp">
+			<h2>{{ message }}</h2>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>书籍名称</th>
+						<th>出版日期</th>
+						<th>价格</th>
+						<th>购买数量</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(item,index) in books" :key="index">
+						<th>{{index}}</th>
+						<th>{{item.name}}</th>
+						<th>{{item.date}}</th>
+						<th>￥{{item.price}}</th>
+						<th><button @click="sub(index)" :disabled="item.count<=1">-</button>{{item.count}}<button @click="add(index)">+</button></th>
+						<th><button @click="del(index)">移除</button></th>
+					</tr>
+				</tbody>
+			</table>
+			<h2>总价{{priceCount}}</h2>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '04_综合案例.html',
+						books: [
+							{ name: '《算法导论》', date: '2006-9', price: 85.0, count: 1 },
+							{ name: '《UNIX编程艺术》', date: '2006-2', price: 59.0, count: 1 },
+							{ name: '《编程珠玑》', date: '2008-10', price: 39.0, count: 1 },
+							{ name: '《代码大全》', date: '2006-3', price: 128.0, count: 1 },
+						],
+					}
+				},
+				computed: {
+					priceCount() {
+						let count = 0
+						this.books.forEach((val) => {
+							count += val.price * val.count
+						})
+						return count
+					},
+				},
+				methods: {
+					sub(index) {
+						this.books[index].count--
+					},
+					add(index) {
+						this.books[index].count++
+					},
+					del(index) {
+						this.books.splice(index, 1)
+					},
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
