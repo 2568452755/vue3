@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>02_监听器watch的配置选项.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<h2>{{ message }}</h2>
+			<button @click="changeMsg">按鈕</button>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: {
+							name: '张三',
+							age: 18,
+							child: {
+								name: '李四',
+							},
+						},
+					}
+				},
+				watch: {
+					message: {
+						handler(newVal, oldVal) {
+							//引用数据类型, 两个值一样
+							console.log(newVal, oldVal)
+						},
+						deep: true, //深度监听,如果不使用,就只会监听对象是否变化,不会监听对象属性值的变化
+						// immediate: true, //是否至少执行一次
+					},
+				},
+				methods: {
+					changeMsg() {
+						this.message.child.name = '王五'
+					},
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
