@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>02_注册局部组件.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<h2>{{ message }}</h2>
+			<cpn></cpn>
+			<cpn></cpn>
+			<cpn></cpn>
+		</template>
+		<template id="cpn">
+			<h2>{{title}}</h2>
+		</template>
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const Cpn = {
+				template: `#cpn`,
+				data() {
+					return {
+						title: '局部组件',
+					}
+				},
+			}
+			const App = {
+				template: `#myapp`,
+				components: { Cpn },
+				data() {
+					return {
+						message: '02_注册局部组件.html',
+					}
+				},
+			}
+
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
