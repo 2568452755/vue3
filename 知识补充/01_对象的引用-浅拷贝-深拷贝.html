@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>01_对象的引用-浅拷贝-深拷贝.html</title>
+	</head>
+	<body>
+		<!--	使用lodash进行深浅拷贝-->
+		<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+		<!--	1.对象的引用-->
+		<script>
+			//			两个对象同时指向同一个内存地址,修改的是修改同一个内存中的值
+			// const person1 = { name: '张三', age: 18 }
+			// const person2 = person1
+			// person2.name = '李四'
+			// console.log(person1)
+		</script>
+
+		<!--	2.浅拷贝-->
+		<script>
+			// const person1 = { name: '张三', age: 18, friend: { name: '王五', age: 19 } }
+			// //浅拷贝方式1
+			// const person2 = Object.assign({}, person1)
+			// //浅拷贝方式2
+			// const person2 = _.clone(person1)
+			// //这里只复制出对象的一层,外层互不印象
+			// person2.name = '李四'
+			//对象里面的对象仍然指向的同一个地址,修改对象里面的对象仍然是修改同一个内存中的值
+			// person2.friend.name = '赵六'
+			// console.log(person1)
+			// console.log(person2)
+		</script>
+
+		<!--	3.深拷贝-->
+		<script>
+			const person1 = { name: '张三', age: 18, friend: { name: '王五', age: 19 } }
+			// // 深拷贝方式1
+			// //复制出的对象是一个完全新开辟的地址,完全独立
+			// const person2 = JSON.parse(JSON.stringify(person1))
+			//深拷贝方式2
+			const person2 = _.cloneDeep(person1)
+			person2.name = '李四'
+			person2.friend.name = '赵六'
+			console.log(person1)
+			console.log(person2)
+		</script>
+	</body>
+</html>
