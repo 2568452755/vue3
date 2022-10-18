@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>02_判断逻辑中的隐式转化.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<script>
+			const score = '100'
+			//在进行逻辑判断时,能够进行类型转化时,js会自动将其转化为相同类型进行比较(隐式转化)
+			if (score > 90) {
+				console.log('优秀')
+			}
+		</script>
+	</body>
+</html>
