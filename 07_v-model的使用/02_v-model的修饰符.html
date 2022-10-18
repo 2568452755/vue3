@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>02_vodel的修饰符.html</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<!--		1.lazy修饰符	将双向绑定的input事件改为change事件,即在鼠标移出输入框时才会同步更改h2中的内容-->
+			<input v-model.lazy="message" />
+			<h2>{{ message }}</h2>
+
+			<!--			2.number修饰符 v-model在用户输入后会默认将number类型改成string,使用number修饰符可不让其改为string-->
+			<input v-model.number="score" />
+			<h2>{{typeof score}}</h2>
+
+			<!--			3.trim修饰符 自动过滤用户输入的首尾空白字符-->
+			<input v-model.trim="message2" />
+			<button @click="btnClick">按钮</button>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '02_v-model的修饰符.html',
+						score: 90,
+						message2: '02_v-model的修饰符.html',
+					}
+				},
+				methods: {
+					btnClick() {
+						console.log(this.message2)
+					},
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
