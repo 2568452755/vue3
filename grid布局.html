@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>grid布局.html</title>
+		<style>
+			.wrapper {
+				display: grid;
+			}
+			body,
+			html {
+				padding: 0;
+				margin: 0;
+			}
+
+			.wrapper {
+				display: grid;
+				/*设置n列,每列占比*/
+				grid-template-columns: 3fr 1fr 1fr;
+				/*设置n行,每行占比*/
+				grid-template-rows: 1fr 3fr;
+				/*两列间距5px,背景颜色黑色,不设置颜色就为黑色*/
+				grid-column-gap: 5px;
+				background-color: black;
+				/*设置两行间距1px*/
+				grid-row-gap: 1px;
+			}
+
+			.letter {
+				background-color: #0069b3;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 20px;
+				font-size: 70px;
+				color: white;
+				line-height: 1;
+				font-family: 'hobeaux-rococeaux-background', Helvetica, serif;
+				font-weight: 200;
+				cursor: pointer;
+				transition: all 0.3s ease;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<h2>{{message}}</h2>
+			<div class="wrapper">
+				<div class="letter">A</div>
+				<div class="letter">B</div>
+				<div class="letter">C</div>
+				<div class="letter">D</div>
+			</div>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: 'grid布局.html',
+					}
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>

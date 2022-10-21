@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>test.html</title>
+		<style>
+			.tooltip-wrapper {
+				width: 800px;
+				height: 100px;
+				border-width: 1px;
+				border-color: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app"></div>
+		<div class="tooltip-wrapper"></div>
+		<script>
+			async function fn() {
+				await new Promise((res, rej) => {
+					let flag = 0
+					setTimeout(() => {
+						console.log('fn1')
+						flag++
+						if (flag == 3) {
+							res()
+						}
+					}, 1000)
+					setTimeout(() => {
+						console.log('fn2')
+						flag++
+						if (flag == 3) {
+							res()
+						}
+					}, 2000)
+					setTimeout(() => {
+						console.log('fn3')
+						flag++
+						if (flag == 3) {
+							res()
+						}
+					}, 1500)
+				}).then(() => {
+					console.log('all')
+				})
+			}
+			fn()
+			function fn1() {
+				return new Promise((res, rej) => {
+					setTimeout(() => {
+						res('1')
+						console.log('fn1')
+					}, 1000)
+				})
+			}
+			function fn2() {
+				return new Promise((res, rej) => {
+					setTimeout(() => {
+						res('2')
+						console.log('fn2')
+					}, 2000)
+				})
+			}
+			function fn3() {
+				return new Promise((res, rej) => {
+					setTimeout(() => {
+						res('3')
+						console.log('fn3')
+					}, 1500)
+				})
+			}
+
+			Promise.all([fn1(), fn2(), fn3()]).then((res, rej) => {
+				// console.log(res)
+				console.log('all')
+			})
+		</script>
+	</body>
+</html>
