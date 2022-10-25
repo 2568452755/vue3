@@ -29,6 +29,17 @@ module.exports = {
 					'css-loader',
 				],
 			},
+			{
+				test: /\.less$/,
+				use: [
+					//加载css文件
+					'style-loader',
+					//引入css文件
+					'css-loader',
+					//	less转css
+					'less-loader',
+				],
+			},
 		],
 	},
 }
