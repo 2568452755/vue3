@@ -27,6 +27,16 @@ module.exports = {
 					'style-loader',
 					//引入css文件
 					'css-loader',
+					//自动添加浏览器前缀,用于适配浏览器;css样式的重置
+					'postcss-loader',
+					// {
+					// 	loader: 'postcss-loader',
+					// 	options: {
+					// 		postcssOptions: {
+					// 			plugins: [require('autoprefixer')],
+					// 		},
+					// 	},
+					// },
 				],
 			},
 			{
