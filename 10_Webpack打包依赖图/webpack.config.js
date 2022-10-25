@@ -22,6 +22,10 @@ module.exports = {
 				//完整写法
 				use: [
 					// { loader: 'css-loader' }
+					//执行顺序是从后往前
+					//加载css文件
+					'style-loader',
+					//引入css文件
 					'css-loader',
 				],
 			},
