@@ -11,4 +11,20 @@ module.exports = {
 		//出口文件,默认是index.js
 		filename: 'bundle.js',
 	},
+	module: {
+		rules: [
+			{
+				test: /\.css$/, //正则表达式, 表示匹配以.css为结尾的文件
+
+				//1.loader的写法(语法糖)
+				//loader:'css-loader'
+
+				//完整写法
+				use: [
+					// { loader: 'css-loader' }
+					'css-loader',
+				],
+			},
+		],
+	},
 }

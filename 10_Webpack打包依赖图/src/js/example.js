@@ -1,3 +1,5 @@
+import '../css/style.css'
+
 const el = document.createElement('div')
 el.className = 'title'
 el.innerHTML = 'hello world'
