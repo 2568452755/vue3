@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>1.html</title>
+		<style></style>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<template id="myapp">
+			<div class="side-header-msg">
+				<div class="side-header-msg-text">
+					<el-tag :class="`side-header-msg-text-tag ${tagStatus[state.authorizationType]}`" type="warning"> {{ textStatus[state.authorizationType] }} </el-tag>
+				</div>
+				<div v-if="[1, 2].includes(state.authorizationType)" class="side-header-msg-icon">
+					<vs-msg-icon
+						msg="产品提供免费3个月(90天)的试用授权，试用授权对所有模块生效，模块功能和正式授权功能一样。</br>
+         如果试用时产品输入正式授权，则会在正式授权的有效期上叠加剩余试用授权的时间。"
+					></vs-msg-icon>
+				</div>
+			</div>
+		</template>
+
+		<script src="../js/vue.js"></script>
+
+		<script>
+			const App = {
+				template: `#myapp`,
+				data() {
+					return {
+						message: '1.html',
+					}
+				},
+			}
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+</html>
