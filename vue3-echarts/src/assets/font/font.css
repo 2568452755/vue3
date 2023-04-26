@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "LcdD";
+  src: url("./LcdD.ttf");
+  font-style:normal;
+}
+@font-face {
+  font-family: "QR";
+  src: url("./Quartz Regular.ttf");
+  font-style:normal;
+}
